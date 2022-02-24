@@ -1,0 +1,6 @@
+[build-system]
+requires = [
+    "numpy",
+    "numba"
+]
+build-backend = "setuptools.build_meta"
