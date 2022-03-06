@@ -12,6 +12,8 @@ import numpy as np
  * @return the transformed x following the power law distribution
 */
 """
+
+
 def power_law(x0, x1, n, y):
     step = pow(x1, n + 1) - pow(x0, n + 1) * y + pow(x0, n + 1)
     return pow(step, 1 / (n + 1))
@@ -64,6 +66,7 @@ def newton_factory(func, fprime):
 
 
 _newton_elliptic = newton_factory(_kepler_equation, _kepler_equation_prime)
+
 
 def circle_area(characteristic_length):
     radius = characteristic_length / 2

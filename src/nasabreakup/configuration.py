@@ -1,4 +1,4 @@
-import configparser
+import yaml
 from enum import Enum
 
 
@@ -27,17 +27,19 @@ class SatType(Enum):
 
 class SimulationConfiguration:
 
-    # Takes a .ini file with simulation configurations
+    # Takes a .yaml file with simulation configurations
     def __init__(self, filePath):
-        parser = configparser.ConfigParser()
-        parser.read(filePath)
-        self._minimalCharacteristicLength = float(
-            parser.get("simulation", "minimalCharacteristicLength")
-        )
-        self._simulationType = SimulationType(
-            parser.get("simulation", "simulationType")
-        )
-        self._sat_type = SatType(parser.get("simulation", "satType"))
+        try:
+            with open("data.yaml", 'r') as stream:
+                data_loaded = yaml.safe_load(stream)
+
+                self._minimalCharacteristicLength = float(
+                    data_loaded["minimalCharacteristicLength"])
+                self._simulationType = SimulationType(data_loaded["simulationType"])
+                self._sat_type = SatType(data_loaded["satType"])
+                stream.close()
+        except Exception as e:
+            print(e)
 
     @property
     def minimalCharacteristicLength(self):
