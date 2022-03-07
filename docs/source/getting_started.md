@@ -4,7 +4,7 @@
 
 _NASA Breakup Model in Python_ can be installed by running:
 ```
-pip install nasa-breakup
+pip install nasabreakup
 ```
 
 If you can't wait for the latest release and want to install from GitHub, use:
