@@ -1,7 +1,7 @@
 from .event import Explosion, Collision
 from .configuration import SimulationType, SatType
-from .utils.utils import power_law
-from .utils.AMUtils import (
+
+from .utils import (
     mean_1,
     mean_2,
     mean_soc,
@@ -9,6 +9,7 @@ from .utils.AMUtils import (
     sigma_2,
     sigma_soc,
     alpha,
+    power_law
 )
 import numpy as np
 

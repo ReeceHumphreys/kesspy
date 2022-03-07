@@ -30,4 +30,5 @@
    src.nasabreakup.event
    src.nasabreakup.model
    src.nasabreakup.satellite
+   src.nasabreakup.utils
 
