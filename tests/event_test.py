@@ -50,6 +50,17 @@ class TestEvent:
             assert fragment_count is expected
 
     @pytest.mark.parametrize("test_input, expected", [
+        (1, ENTER),
+    ])
+    def test_collision_number_fragments_raises(self, satellites, test_input, expected):
+        collision_event = Collision()
+
+        fragment_count = collision_event.fragment_count(satellites, test_input)
+
+        assert fragment_count is expeceted
+
+
+    @pytest.mark.parametrize("test_input, expected", [
         (1, 6),
     ])
     def test_explosion_number_fragments(self, satellites, test_input, expected):
