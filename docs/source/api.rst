@@ -5,7 +5,6 @@
    package page. DO NOT REMOVE THIS FILE!
 
 :orphan:
-:tocdepth: 1
 
 .. autosummary::
    :toctree: _autosummary
