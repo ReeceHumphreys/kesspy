@@ -20,7 +20,7 @@
    :caption: Project Links:
 
    GitHub <https://github.com/ReeceHumphreys/NASA-breakup-model-python>
-   PyPI <http://www.google.com>
+   PyPI <https://pypi.org/project/nasabreakup/>
 
 
 Welcome to NASA Standard Breakup Model in Python
