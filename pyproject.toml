@@ -1,6 +1,6 @@
 [build-system]
 requires = [
-    "numpy",
-    "numba"
+    "setuptools>=42",
+    "wheel"
 ]
 build-backend = "setuptools.build_meta"

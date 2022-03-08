@@ -30,16 +30,15 @@ class SimulationConfiguration:
     # Takes a .yaml file with simulation configurations
     def __init__(self, filePath):
         try:
-            with open("data.yaml", 'r') as stream:
+            with open(filePath, 'r') as stream:
                 data_loaded = yaml.safe_load(stream)
-
                 self._minimalCharacteristicLength = float(
-                    data_loaded["minimalCharacteristicLength"])
-                self._simulationType = SimulationType(data_loaded["simulationType"])
-                self._sat_type = SatType(data_loaded["satType"])
+                    data_loaded['minimalCharacteristicLength'])
+                self._simulationType = SimulationType(data_loaded['simulationType'].upper())
+                self._sat_type = SatType(data_loaded['satType'].upper())
                 stream.close()
         except Exception as e:
-            print(e)
+            print(f"Exception: {e}")
 
     @property
     def minimalCharacteristicLength(self):
