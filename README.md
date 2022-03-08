@@ -14,7 +14,7 @@
 </div>
 
 <br>
-NASA Standard Breakup Model in Python is a Python library for simulating explosion and collision events in orbit using the NASA Standard Breakup Model. The breakup model was implemented based on the following works: NASA’s new breakup model of evolve 4.0 (Johnson et al.) 1, and Proper Implementation of the 1998 NASA Breakup Model (Krisko et al.) 2.
+NASA Standard Breakup Model in Python is a Python library for simulating explosion and collision events in orbit using the NASA Standard Breakup Model. The breakup model was implemented based on the following works: NASA’s new breakup model of evolve 4.0 (Johnson et al.), and Proper Implementation of the 1998 NASA Breakup Model (Krisko et al.).
 
 ## Installation
 NASA Breakup Model in Python runs on Python 3.6 or higher (Python 3.8 is recommended):
