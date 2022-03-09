@@ -1,6 +1,6 @@
-src.nasabreakup.utils.alpha
+src.nasa_sbm.utils.alpha
 ===========================
 
-.. currentmodule:: src.nasabreakup.utils
+.. currentmodule:: src.nasa_sbm.utils
 
 .. autofunction:: alpha

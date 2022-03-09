@@ -1,5 +1,5 @@
 import pytest
-import nasabreakup
+import nasa_sbm
 
 
 class TestConfiguration:

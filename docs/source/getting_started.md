@@ -2,9 +2,9 @@
 
 ## Installation
 
-_NASA Breakup Model in Python_ can be installed by running:
+_python-sbm_ can be installed by running:
 ```
-pip install nasabreakup
+pip install nasa_sbm
 ```
 
 If you can't wait for the latest release and want to install from GitHub, use:

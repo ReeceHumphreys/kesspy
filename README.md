@@ -1,4 +1,4 @@
-# NASA Breakup Model in Python
+# python-sbm
 
 <div style="display:flex; flex-direction: row; justify-content: center; align-items: center">
   <a href="https://nasa-breakup-model-python.readthedocs.io/en/latest/">
@@ -8,8 +8,8 @@
     <img alt="License: MIT" src="https://img.shields.io/github/license/ReeceHumphreys/NASA-breakup-model-python" target="_blank" />
   </a>
   <img src="https://img.shields.io/lgtm/grade/python/github/ReeceHumphreys/NASA-breakup-model-python" target="_blank"/>
-  <a href="https://pypi.org/project/nasabreakup/">
-    <img src="https://img.shields.io/pypi/v/nasabreakup"target="_blank"/>
+  <a href="https://pypi.org/project/nasa_sbm/">
+    <img src="https://img.shields.io/pypi/v/nasa_sbm"target="_blank"/>
   </a>
 </div>
 
@@ -17,27 +17,27 @@
 NASA Standard Breakup Model in Python is a Python library for simulating explosion and collision events in orbit using the NASA Standard Breakup Model. The breakup model was implemented based on the following works: NASA’s new breakup model of evolve 4.0 (Johnson et al.), and Proper Implementation of the 1998 NASA Breakup Model (Krisko et al.).
 
 ## Installation
-NASA Breakup Model in Python runs on Python 3.6 or higher (Python 3.8 is recommended):
+python-sbm runs on Python 3.6 or higher (Python 3.8 is recommended):
 Currently the package is available using pip:
 ```
-pip install nasabreakup
+pip install nasa_sbm
 ```
 >*A conda distribution will be made available when the project is stable*
 
 ## Getting Started
 
-To use NASA Breakup Model in Python, you must first create a .yaml file to configure the simulation.
-This file has three required fields, the minimum characteristic length, the [simulation type](https://nasa-breakup-model-python.readthedocs.io/en/latest/_autosummary/nasabreakup.configuration.SimulationType.html),
-and the [satellite type](https://nasa-breakup-model-python.readthedocs.io/en/latest/_autosummary/nasabreakup.configuration.SatType.html)
+To use python-sbm, you must first create a .yaml file to configure the simulation.
+This file has three required fields, the minimum characteristic length, the [simulation type](https://nasa-breakup-model-python.readthedocs.io/en/latest/_autosummary/nasa_sbm.configuration.SimulationType.html),
+and the [satellite type](https://nasa-breakup-model-python.readthedocs.io/en/latest/_autosummary/nasa_sbm.configuration.SatType.html)
 involved in the fragmentation event.
 
-Secondly, you must provide an implementation of [Satellite](https://nasa-breakup-model-python.readthedocs.io/en/latest/_autosummary/nasabreakup.satellite.Satellite.html).
+Secondly, you must provide an implementation of [Satellite](https://nasa-breakup-model-python.readthedocs.io/en/latest/_autosummary/nasa_sbm.satellite.Satellite.html).
 
 Once, you have those two criterion met you can perform the simulation as follows:
 
 ```python
-from nasabreakup.configuration import SimulationConfiguration
-from nasabreakup.model import BreakupModel
+from nasa_sbm.configuration import SimulationConfiguration
+from nasa_sbm.model import BreakupModel
 
 config = SimulationConfiguration('data/simulation_config.yaml')
 event  = BreakupModel(config, np.array([sat]))

@@ -1,23 +1,23 @@
-﻿nasabreakup
+﻿nasa_sbm
 ===========
 
-.. automodule:: nasabreakup
+.. automodule:: nasa_sbm
 
-   
-   
-   
 
-   
-   
-   
 
-   
-   
-   
 
-   
-   
-   
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -26,8 +26,7 @@
    :template: custom-module-template.rst
    :recursive:
 
-   nasabreakup.configuration
-   nasabreakup.event
-   nasabreakup.model
-   nasabreakup.satellite
-
+   nasa_sbm.configuration
+   nasa_sbm.event
+   nasa_sbm.model
+   nasa_sbm.satellite

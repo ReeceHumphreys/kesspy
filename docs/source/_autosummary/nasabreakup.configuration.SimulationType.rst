@@ -1,7 +1,7 @@
-nasabreakup.configuration.SimulationType
+nasa_sbm.configuration.SimulationType
 ========================================
 
-.. currentmodule:: nasabreakup.configuration
+.. currentmodule:: nasa_sbm.configuration
 
 .. autoclass:: SimulationType
    :members:
@@ -9,17 +9,15 @@ nasabreakup.configuration.SimulationType
    :inherited-members:
    :special-members: __call__, __add__, __mul__
 
-   
-   
-   
 
-   
-   
+
+
+
+
+
    .. rubric:: Attributes
 
    .. autosummary::
-   
+
       ~SimulationType.explosion
       ~SimulationType.collision
-   
-   

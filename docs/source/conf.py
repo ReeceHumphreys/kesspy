@@ -18,7 +18,7 @@ sys.path.insert(0, os.path.abspath("../.."))
 
 # -- Project information -----------------------------------------------------
 
-project = 'NASA Breakup Model in Python'
+project = 'python-sbm'
 copyright = '2022, Reece Humphreys'
 author = 'Reece Humphreys'
 

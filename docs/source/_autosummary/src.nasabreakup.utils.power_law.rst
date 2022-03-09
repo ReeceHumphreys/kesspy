@@ -1,6 +1,6 @@
-src.nasabreakup.utils.power\_law
+src.nasa_sbm.utils.power\_law
 ================================
 
-.. currentmodule:: src.nasabreakup.utils
+.. currentmodule:: src.nasa_sbm.utils
 
 .. autofunction:: power_law

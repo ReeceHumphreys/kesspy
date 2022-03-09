@@ -1,6 +1,6 @@
-src.nasabreakup.utils.sigma\_2
+src.nasa_sbm.utils.sigma\_2
 ==============================
 
-.. currentmodule:: src.nasabreakup.utils
+.. currentmodule:: src.nasa_sbm.utils
 
 .. autofunction:: sigma_2

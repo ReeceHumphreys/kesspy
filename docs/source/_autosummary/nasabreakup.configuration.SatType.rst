@@ -1,7 +1,7 @@
-nasabreakup.configuration.SatType
+nasa_sbm.configuration.SatType
 =================================
 
-.. currentmodule:: nasabreakup.configuration
+.. currentmodule:: nasa_sbm.configuration
 
 .. autoclass:: SatType
    :members:
@@ -9,20 +9,18 @@ nasabreakup.configuration.SatType
    :inherited-members:
    :special-members: __call__, __add__, __mul__
 
-   
-   
-   
 
-   
-   
+
+
+
+
+
    .. rubric:: Attributes
 
    .. autosummary::
-   
+
       ~SatType.rb
       ~SatType.sat
       ~SatType.soc
       ~SatType.deb
       ~SatType.index
-   
-   

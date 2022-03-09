@@ -1,23 +1,23 @@
-﻿src.nasabreakup
+﻿src.nasa_sbm
 ===============
 
-.. automodule:: src.nasabreakup
+.. automodule:: src.nasa_sbm
 
-   
-   
-   
 
-   
-   
-   
 
-   
-   
-   
 
-   
-   
-   
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -26,9 +26,8 @@
    :template: custom-module-template.rst
    :recursive:
 
-   src.nasabreakup.configuration
-   src.nasabreakup.event
-   src.nasabreakup.model
-   src.nasabreakup.satellite
-   src.nasabreakup.utils
-
+   src.nasa_sbm.configuration
+   src.nasa_sbm.event
+   src.nasa_sbm.model
+   src.nasa_sbm.satellite
+   src.nasa_sbm.utils

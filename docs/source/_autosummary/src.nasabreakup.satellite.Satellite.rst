@@ -1,7 +1,7 @@
-src.nasabreakup.satellite.Satellite
+src.nasa_sbm.satellite.Satellite
 ===================================
 
-.. currentmodule:: src.nasabreakup.satellite
+.. currentmodule:: src.nasa_sbm.satellite
 
 .. autoclass:: Satellite
    :members:
@@ -9,26 +9,24 @@ src.nasabreakup.satellite.Satellite
    :inherited-members:
    :special-members: __call__, __add__, __mul__
 
-   
-   
+
+
    .. rubric:: Methods
 
    .. autosummary::
       :nosignatures:
-   
-   
-   
 
-   
-   
+
+
+
+
+
    .. rubric:: Attributes
 
    .. autosummary::
-   
+
       ~Satellite.characteristic_length
       ~Satellite.mass
       ~Satellite.position
       ~Satellite.type
       ~Satellite.velocity
-   
-   

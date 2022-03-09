@@ -1,20 +1,20 @@
-﻿src.nasabreakup.utils
+﻿src.nasa_sbm.utils
 =====================
 
-.. automodule:: src.nasabreakup.utils
+.. automodule:: src.nasa_sbm.utils
 
-   
-   
-   
 
-   
-   
+
+
+
+
+
    .. rubric:: Functions
 
    .. autosummary::
       :toctree:
       :nosignatures:
-   
+
       alpha
       distribution_constant
       mean_1
@@ -24,16 +24,3 @@
       sigma_1
       sigma_2
       sigma_soc
-   
-   
-
-   
-   
-   
-
-   
-   
-   
-
-
-

@@ -1,8 +1,8 @@
 import pytest
 import numpy as np
-from nasabreakup.configuration import SatType
-from nasabreakup.satellite import Satellite
-from nasabreakup.event import Explosion, Collision
+from nasa_sbm.configuration import SatType
+from nasa_sbm.satellite import Satellite
+from nasa_sbm.event import Explosion, Collision
 
 class TestEvent:
 

@@ -1,6 +1,6 @@
-src.nasabreakup.utils.sigma\_soc
+src.nasa_sbm.utils.sigma\_soc
 ================================
 
-.. currentmodule:: src.nasabreakup.utils
+.. currentmodule:: src.nasa_sbm.utils
 
 .. autofunction:: sigma_soc

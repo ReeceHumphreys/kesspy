@@ -1,6 +1,6 @@
-src.nasabreakup.utils.mean\_soc
+src.nasa_sbm.utils.mean\_soc
 ===============================
 
-.. currentmodule:: src.nasabreakup.utils
+.. currentmodule:: src.nasa_sbm.utils
 
 .. autofunction:: mean_soc

@@ -3,21 +3,21 @@
 
 .. automodule:: src
 
-   
-   
-   
 
-   
-   
-   
 
-   
-   
-   
 
-   
-   
-   
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -26,5 +26,4 @@
    :template: custom-module-template.rst
    :recursive:
 
-   src.nasabreakup
-
+   src.nasa_sbm
