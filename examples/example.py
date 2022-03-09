@@ -1,8 +1,8 @@
 
 import numpy as np
-from nasabreakup.configuration import SatType, SimulationConfiguration
-from nasabreakup.model import BreakupModel
-from nasabreakup.satellite import Satellite
+from nasa_sbm.configuration import SatType, SimulationConfiguration
+from nasa_sbm.model import BreakupModel
+from nasa_sbm.satellite import Satellite
 
 class MySat(Satellite):
 
