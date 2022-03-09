@@ -4,7 +4,7 @@ from .configuration import SatType
 
 class Collision():
     @property
-    def lc_power_law_exponent(self):
+    def lc_power_law_exponent(self) -> float:
         """
         Gets the exponents used in the characteristic length power law
         :py:meth:`odap.BreakupModel.FragmentationEvent._characteristic_length_distribution`.
@@ -12,7 +12,7 @@ class Collision():
         return -2.71
 
     @property
-    def delta_velocity_offset(self):
+    def delta_velocity_offset(self) -> list[float]:
         """
         Gets the offset factors used in determining the change in velocity for each
         fragment.
@@ -20,7 +20,7 @@ class Collision():
         return [0.9, 2.9]
 
     @property
-    def max_characteristic_length(self):
+    def max_characteristic_length(self) -> float:
         """
         Gets the largest characteristic length possible for the fragmentation event.
         For collisions, this is the characteristic length of the more massive satellite.
@@ -28,7 +28,7 @@ class Collision():
         return self._max_characteristic_length
 
     @property
-    def sat_type(self):
+    def sat_type(self) -> SatType:
         """
         Gets the satellite type for the fragmentation event. In the case that either
         of the satellites involved in the collision are rocket bodies, the type is
@@ -37,14 +37,14 @@ class Collision():
         return self._sat_type
 
     @property
-    def input_mass(self):
+    def input_mass(self) -> float:
         """
         Gets the input mass for the fragmentation event. For collisions, this is the sum
         of the massses of both satellites.
         """
         return self._input_mass
 
-    def fragment_count(self, satellites, min_characteristic_length):
+    def fragment_count(self, satellites: np.ndarray, min_characteristic_length : float):
         """
         Determines the number of debris fragments produced by the fragmentation event.
         Noteably, this quantity can change if mass conservation is being enforced.
@@ -111,7 +111,7 @@ class Collision():
 
 class Explosion():
     @property
-    def lc_power_law_exponent(self):
+    def lc_power_law_exponent(self) -> float:
         """
         Gets the exponents used in the characteristic length power law
         :py:meth:`odap.BreakupModel.FragmentationEvent._characteristic_length_distribution`.
@@ -119,7 +119,7 @@ class Explosion():
         return -2.6
 
     @property
-    def delta_velocity_offset(self):
+    def delta_velocity_offset(self) -> list[float]:
         """
         Gets the offset factors used in determining the change in velocity for each
         fragment.
@@ -127,7 +127,7 @@ class Explosion():
         return [0.2, 1.85]
 
     @property
-    def max_characteristic_length(self):
+    def max_characteristic_length(self) -> float:
         """
         Gets the largest characteristic length possible for the fragmentation event.
         For explosions, this is the characteristic length of the input satellite.
@@ -135,21 +135,21 @@ class Explosion():
         return self._max_characteristic_length
 
     @property
-    def sat_type(self):
+    def sat_type(self) -> SatType:
         """
         Gets the satellite type for the fragmentation event.
         """
         return self._sat_type
 
     @property
-    def input_mass(self):
+    def input_mass(self) -> float:
         """
         Gets the input mass for the fragmentation event. For explosions, this is the
         mass of the input satellite.
         """
         return self._input_mass
 
-    def fragment_count(self, satellites, min_characteristic_length):
+    def fragment_count(self, satellites: np.ndarray, min_characteristic_length : float) -> np.ndarray:
         """
         Determines the number of debris fragments produced by the fragmentation event.
         Noteably, this quantity can change if mass conservation is being enforced.

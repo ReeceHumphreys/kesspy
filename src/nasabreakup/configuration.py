@@ -14,7 +14,7 @@ class SatType(Enum):
     deb = "DEB"
 
     @property
-    def index(self):
+    def index(self) -> int:
         if self == SatType.rb:
             return 0
         elif self == SatType.sat:
@@ -28,7 +28,7 @@ class SatType(Enum):
 class SimulationConfiguration:
 
     # Takes a .yaml file with simulation configurations
-    def __init__(self, filePath):
+    def __init__(self, filePath: str):
         try:
             with open(filePath, 'r') as stream:
                 data_loaded = yaml.safe_load(stream)
@@ -41,13 +41,13 @@ class SimulationConfiguration:
             print(f"Exception: {e}")
 
     @property
-    def minimalCharacteristicLength(self):
+    def minimalCharacteristicLength(self) -> float:
         return self._minimalCharacteristicLength
 
     @property
-    def simulationType(self):
+    def simulationType(self) -> SimulationType:
         return self._simulationType
 
     @property
-    def sat_type(self):
+    def sat_type(self) -> SatType:
         return self._sat_type

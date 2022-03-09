@@ -1,3 +1,5 @@
+import numpy as np
+
 from abc import (
     ABC,
     abstractmethod,
@@ -8,22 +10,22 @@ class Satellite(ABC):
 
     @property
     @abstractmethod
-    def position(self):
+    def position(self) -> np.ndarray:
         ...
 
     @property
     @abstractmethod
-    def velocity(self):
+    def velocity(self) -> np.ndarray:
         ...
 
     @property
     @abstractmethod
-    def mass(self):
+    def mass(self) -> float:
         ...
 
     @property
     @abstractmethod
-    def characteristic_length(self):
+    def characteristic_length(self) -> float:
         ...
 
     @property
