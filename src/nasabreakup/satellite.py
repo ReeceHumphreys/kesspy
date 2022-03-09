@@ -1,4 +1,5 @@
 import numpy as np
+from .configuration import SatType
 
 from abc import (
     ABC,
@@ -30,5 +31,5 @@ class Satellite(ABC):
 
     @property
     @abstractmethod
-    def type(self):
+    def type(self) -> SatType :
         ...

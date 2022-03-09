@@ -14,7 +14,7 @@ from .utils import (
 import numpy as np
 
 
-class FragmentationEvent:
+class BreakupModel:
 
     _output = np.array([])
 
@@ -43,6 +43,9 @@ class FragmentationEvent:
         # Setting characteristic lengths
         self._min_characteristic_length = config.minimalCharacteristicLength
 
+        # Setting if mass should be conserved
+        self._mass_conservation_enabled = config.mass_conservation
+
     def run(self):
         # Compute the number of fragments generate in the fragmentation event
         count = self._event.fragment_count(
@@ -53,24 +56,25 @@ class FragmentationEvent:
 
         # Assigning debris type and location
         self._output = np.empty((count, 7, 3))
-        self._output[:, 0] = SatType.deb.index
+        self._output[:, 0] = None
         self._output[:, 1] = r
 
-        # Characteristic Length and AM for each debris
+        # Computing L_c for each debris following powerlaw
+        self._output[:, 2] = self._characteristic_length_distribution()
         for i in range(count):
-            # Computing L_c for each debris following powerlaw
-            self._output[i, 2] = self._characteristic_length_distribution()
             # Computing A/M ratio for debris
             self._output[i, 3] = self._AM_Ratio(self._output[i, 2, 0])
             # Computing Area for each debris using L_c
             self._output[i, 4] = self._compute_Area(self._output[i, 2, 0])
-            # Compute Mass using area and AM ratio
-            self._output[i, 5] = self._compute_mass(
-                self._output[i, 4, 0], self._output[i, 3, 0]
-            )
+        # Compute Mass using area and AM ratio
+        self._output[:, 5] = self._compute_mass(
+            self._output[:, 4, :], self._output[:, 3, :]
+        )
 
         # Mass conservation
-        self._conserve_mass()
+        if self._mass_conservation_enabled == True:
+            self._conserve_mass()
+
         count = self._output.shape[0]
 
         # Determine debris velocity
@@ -124,7 +128,7 @@ class FragmentationEvent:
         else:
             while self._event.input_mass > output_mass:
                 new_row = np.empty((7, 3))
-                new_row[0] = SatType.deb.index
+                new_row[0] = None
                 new_row[1] = self.sats[0].position
                 # Computing L_c for each debris following powerlaw
                 new_row[2] = self._characteristic_length_distribution()

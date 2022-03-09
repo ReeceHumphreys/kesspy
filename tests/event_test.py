@@ -29,11 +29,11 @@ class TestEvent:
 
             @property
             def position(self):
-                ...
+                return np.array([1, 1, 1])
 
             @property
             def velocity(self):
-                ...
+                return np.array([1, 1, 1])
 
         sat_1 = MySatellite(500, 0.1, SatType("SC"))
         sat_2 = MySatellite(1000, 0.3, SatType("RB"))
@@ -49,15 +49,15 @@ class TestEvent:
             fragment_count = collision_event.fragment_count(satellites, test_input)
             assert fragment_count is expected
 
-    @pytest.mark.parametrize("test_input, expected", [
-        (1, ENTER),
-    ])
-    def test_collision_number_fragments_raises(self, satellites, test_input, expected):
-        collision_event = Collision()
+    # @pytest.mark.parametrize("test_input, expected", [
+    #     (1, 100),
+    # ])
+    # def test_collision_number_fragments(self, satellites, test_input, expected):
+    #     collision_event = Collision()
 
-        fragment_count = collision_event.fragment_count(satellites, test_input)
+    #     fragment_count = collision_event.fragment_count(satellites, test_input)
 
-        assert fragment_count is expeceted
+    #     assert fragment_count is expected
 
 
     @pytest.mark.parametrize("test_input, expected", [

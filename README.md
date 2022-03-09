@@ -37,10 +37,10 @@ Once, you have those two criterion met you can perform the simulation as follows
 
 ```python
 from nasabreakup.configuration import SimulationConfiguration
-from nasabreakup.model import FragmentationEvent
+from nasabreakup.model import BreakupModel
 
 config = SimulationConfiguration('data/simulation_config.yaml')
-event  = FragmentationEvent(config, np.array([sat]))
+event  = BreakupModel(config, np.array([sat]))
 debris = event.run()
 ```
 > An example configuration.yaml and Satellite implementation has been provided in `examples`

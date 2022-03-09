@@ -1,3 +1,4 @@
+from xmlrpc.client import Boolean
 import yaml
 from enum import Enum
 
@@ -13,18 +14,6 @@ class SatType(Enum):
     soc = "SOC"
     deb = "DEB"
 
-    @property
-    def index(self) -> int:
-        if self == SatType.rb:
-            return 0
-        elif self == SatType.sat:
-            return 1
-        elif self == SatType.soc:
-            return 2
-        else:
-            return 3
-
-
 class SimulationConfiguration:
 
     # Takes a .yaml file with simulation configurations
@@ -36,6 +25,7 @@ class SimulationConfiguration:
                     data_loaded['minimalCharacteristicLength'])
                 self._simulationType = SimulationType(data_loaded['simulationType'].upper())
                 self._sat_type = SatType(data_loaded['satType'].upper())
+                self._mass_conservation = bool(data_loaded['massConservation'])
                 stream.close()
         except Exception as e:
             print(f"Exception: {e}")
@@ -51,3 +41,7 @@ class SimulationConfiguration:
     @property
     def sat_type(self) -> SatType:
         return self._sat_type
+
+    @property
+    def mass_conservation(self) -> bool:
+        return self._mass_conservation

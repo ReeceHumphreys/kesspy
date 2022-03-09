@@ -7,7 +7,7 @@ class Collision():
     def lc_power_law_exponent(self) -> float:
         """
         Gets the exponents used in the characteristic length power law
-        :py:meth:`odap.BreakupModel.FragmentationEvent._characteristic_length_distribution`.
+        :py:meth:`odap.model.BreakupModel._characteristic_length_distribution`.
         """
         return -2.71
 
@@ -114,7 +114,7 @@ class Explosion():
     def lc_power_law_exponent(self) -> float:
         """
         Gets the exponents used in the characteristic length power law
-        :py:meth:`odap.BreakupModel.FragmentationEvent._characteristic_length_distribution`.
+        :py:meth:`odap.model.BreakupModel._characteristic_length_distribution`.
         """
         return -2.6
 
