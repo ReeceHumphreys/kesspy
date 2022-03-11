@@ -1,4 +1,4 @@
-# Contributing to NASA Breakup Model in Python
+# Contributing to python-sbm
 We love your input! We want to make contributing to this project as easy and transparent as possible, whether it's:
 
 - Reporting a bug

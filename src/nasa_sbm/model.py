@@ -1,5 +1,5 @@
 from .event import Explosion, Collision
-from .configuration import SimulationType, SatType, SimulationConfiguration
+from .configuration import SimulationType, SimulationConfiguration
 
 from .utils import (
     mean_1,
@@ -33,7 +33,7 @@ class BreakupModel:
     # Sats is an array containing the satellites involved in the
     # fragmentation event Will contain one for explosions and
     # two for collisions
-    def __init__(self, config : SimulationConfiguration, sats : np.ndarray):
+    def __init__(self, config: SimulationConfiguration, sats: np.ndarray):
 
         self.sats = sats
 
@@ -72,7 +72,7 @@ class BreakupModel:
         )
 
         # Mass conservation
-        if self._mass_conservation_enabled == True:
+        if self._mass_conservation_enabled is True:
             self._conserve_mass()
 
         count = self._output.shape[0]
@@ -96,7 +96,7 @@ class BreakupModel:
 
         return self._output
 
-    def _velocity_vector(self, velocity : float) -> np.ndarray:
+    def _velocity_vector(self, velocity: float) -> np.ndarray:
         n1 = np.random.uniform(0.0, 1)
         n2 = np.random.uniform(0.0, 1)
         u = n1 * 2.0 - 1.0
@@ -144,10 +144,10 @@ class BreakupModel:
             # Remove the element that causes output mass to be too large now
             self._output = np.delete(self._output, -1, 0)
 
-    def _compute_mass(self, area : float, AM_ratio : float) -> float:
+    def _compute_mass(self, area: float, AM_ratio: float) -> float:
         return area / AM_ratio
 
-    def _compute_Area(self, characteristic_length : float) -> float:
+    def _compute_Area(self, characteristic_length: float) -> float:
         l_c_bound = 0.00167
         if characteristic_length < l_c_bound:
             factor = 0.540424
@@ -157,7 +157,7 @@ class BreakupModel:
             factor = 0.556945
             return factor * pow(characteristic_length, exponent)
 
-    def _AM_Ratio(self, characteristic_length : float):
+    def _AM_Ratio(self, characteristic_length: float):
         log_l_c = np.log10(characteristic_length)
         if characteristic_length > 0.11:
             # Case bigger than 11 cm

@@ -1,8 +1,8 @@
-
 import numpy as np
 from nasa_sbm.configuration import SatType, SimulationConfiguration
 from nasa_sbm.model import BreakupModel
 from nasa_sbm.satellite import Satellite
+
 
 class MySat(Satellite):
 
@@ -26,8 +26,11 @@ class MySat(Satellite):
     def type(self) -> SatType:
         return SatType.sat
 
+
 sat = MySat()
 config = SimulationConfiguration('sample_config.yaml')
-event  = BreakupModel(config, np.array([sat]))
+event = BreakupModel(config, np.array([sat]))
 
 debris = event.run()
+
+print(f"{debris.shape[0]} Pieces of debris generated.")
