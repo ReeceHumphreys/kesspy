@@ -1,29 +1,31 @@
-nasa_sbm.model.FragmentationEvent
-====================================
+nasa\_sbm.model.BreakupModel
+============================
 
 .. currentmodule:: nasa_sbm.model
 
-.. autoclass:: FragmentationEvent
+.. autoclass:: BreakupModel
    :members:
    :show-inheritance:
    :inherited-members:
    :special-members: __call__, __add__, __mul__
 
-
-
+   
+   
    .. rubric:: Methods
 
    .. autosummary::
       :nosignatures:
+   
+      ~BreakupModel.run
+   
+   
 
-      ~FragmentationEvent.run
-
-
-
-
-
+   
+   
    .. rubric:: Attributes
 
    .. autosummary::
-
-      ~FragmentationEvent.simulation_type
+   
+      ~BreakupModel.simulation_type
+   
+   

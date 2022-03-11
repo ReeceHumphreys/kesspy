@@ -11,4 +11,4 @@
    :template: custom-module-template.rst
    :recursive:
 
-   src
+   nasa_sbm

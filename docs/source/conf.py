@@ -12,8 +12,7 @@
 #
 import os
 import sys
-sys.path.insert(0, os.path.abspath('.'))
-sys.path.insert(0, os.path.abspath("../.."))
+sys.path.insert(0, os.path.abspath('../../src'))
 
 
 # -- Project information -----------------------------------------------------
@@ -23,7 +22,7 @@ copyright = '2022, Reece Humphreys'
 author = 'Reece Humphreys'
 
 # The full version, including alpha/beta/rc tags
-release = '0.0.4'
+release = '0.0.1'
 
 
 # -- General configuration ---------------------------------------------------
@@ -38,6 +37,7 @@ extensions = [
     'sphinx.ext.intersphinx',  # Link to other project's documentation (see mapping below)
     'sphinx.ext.viewcode',  # Add a link to the Python source code for classes, functions etc.
     'sphinx_autodoc_typehints', # Automatically document param types (less noise in class signature)
+    'numpydoc',
 ]
 
 autosummary_generate = True  # Turn on sphinx.ext.autosummary

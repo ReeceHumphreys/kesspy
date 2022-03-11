@@ -1,7 +1,7 @@
-src.nasa_sbm.configuration.SimulationConfiguration
-=====================================================
+nasa\_sbm.configuration.SimulationConfiguration
+===============================================
 
-.. currentmodule:: src.nasa_sbm.configuration
+.. currentmodule:: nasa_sbm.configuration
 
 .. autoclass:: SimulationConfiguration
    :members:
@@ -9,22 +9,25 @@ src.nasa_sbm.configuration.SimulationConfiguration
    :inherited-members:
    :special-members: __call__, __add__, __mul__
 
-
-
+   
+   
    .. rubric:: Methods
 
    .. autosummary::
       :nosignatures:
+   
+   
+   
 
-
-
-
-
-
+   
+   
    .. rubric:: Attributes
 
    .. autosummary::
-
+   
+      ~SimulationConfiguration.mass_conservation
       ~SimulationConfiguration.minimalCharacteristicLength
       ~SimulationConfiguration.sat_type
       ~SimulationConfiguration.simulationType
+   
+   

@@ -42,7 +42,7 @@ which is a larger package that includes propagations, data analysis, and orbit v
 serves as a stand-alone version of the NASA Breakup Model in the scenario that you do not want the additional
 tools provided by ODAP.
 
-.. admonition:: Note - NASA Standard Breakup Model in Python is in development!
+.. admonition:: Note - python-sbm is in development!
 
    *python-sbm* is currently under development. As a result, the API may change,
    and some functionality may not work as expected. As such, until version 1.0, this package should be

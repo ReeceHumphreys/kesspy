@@ -1,20 +1,20 @@
-﻿src.nasa_sbm.utils
-=====================
+nasa\_sbm.utils
+===============
 
-.. automodule:: src.nasa_sbm.utils
+.. automodule:: nasa_sbm.utils
 
+   
+   
+   
 
-
-
-
-
-
+   
+   
    .. rubric:: Functions
 
    .. autosummary::
       :toctree:
       :nosignatures:
-
+   
       alpha
       distribution_constant
       mean_1
@@ -24,3 +24,16 @@
       sigma_1
       sigma_2
       sigma_soc
+   
+   
+
+   
+   
+   
+
+   
+   
+   
+
+
+
