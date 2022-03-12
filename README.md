@@ -61,4 +61,4 @@ debris = event.run()
 >*All other fields have 3 copies of their respective data. This was done as a performance optimization for numpy*
 
 ## Documentation
-- [Read the Docs](https://nasa-breakup-model-python.readthedocs.io/en/latest/)
+- [Read the Docs](https://python-sbm.rtfd.io)
