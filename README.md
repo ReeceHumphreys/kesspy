@@ -1,13 +1,13 @@
 # python-sbm
 
 <div style="display:flex; flex-direction: row; justify-content: center; align-items: center">
-  <a href="https://nasa-breakup-model-python.readthedocs.io/en/latest/">
-    <img alt="docs" src="https://img.shields.io/readthedocs/nasa-breakup-model-python" target="_blank">
+  <a href='https://python-sbm.readthedocs.io/en/latest/?badge=latest'>
+    <img src='https://readthedocs.org/projects/python-sbm/badge/?version=latest' alt='Documentation Status' />
   </a>
-  <a href="https://github.com/ReeceHumphreys/NASA-breakup-model-python/blob/main/LICENSE">
-    <img alt="License: MIT" src="https://img.shields.io/github/license/ReeceHumphreys/NASA-breakup-model-python" target="_blank" />
+  <a href="https://github.com/ReeceHumphreys/python-sbm/blob/main/LICENSE">
+    <img alt="License: MIT" src="https://img.shields.io/github/license/ReeceHumphreys/python-sbm" target="_blank" />
   </a>
-  <img src="https://img.shields.io/lgtm/grade/python/github/ReeceHumphreys/NASA-breakup-model-python" target="_blank"/>
+  <img src="https://img.shields.io/lgtm/grade/python/github/ReeceHumphreys/python-sbm" target="_blank"/>
   <a href="https://pypi.org/project/nasa_sbm/">
     <img src="https://img.shields.io/pypi/v/nasa_sbm"target="_blank"/>
   </a>
