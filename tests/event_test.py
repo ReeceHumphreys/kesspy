@@ -4,6 +4,7 @@ from nasa_sbm.configuration import SatType
 from nasa_sbm.satellite import Satellite
 from nasa_sbm.event import Explosion, Collision
 
+
 class TestEvent:
 
     @pytest.fixture(scope="session")
@@ -58,7 +59,6 @@ class TestEvent:
     #     fragment_count = collision_event.fragment_count(satellites, test_input)
 
     #     assert fragment_count is expected
-
 
     @pytest.mark.parametrize("test_input, expected", [
         (1, 6),

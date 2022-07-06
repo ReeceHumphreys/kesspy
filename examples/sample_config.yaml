@@ -2,4 +2,4 @@
 minimalCharacteristicLength: 0.1
 simulationType: "EXPLOSION"
 satType: "RB"
-massConservation: True
+massConservation: False

@@ -11,7 +11,16 @@
   <a href="https://pypi.org/project/nasa_sbm/">
     <img src="https://img.shields.io/pypi/v/nasa_sbm"target="_blank"/>
   </a>
+  <a href='https://coveralls.io/github/ReeceHumphreys/python-sbm?branch=main'>
+    <img src='https://coveralls.io/repos/github/ReeceHumphreys/python-sbm/badge.svg?branch=main' alt='Coverage Status' />
+  </a>
 </div>
+
+- [Python-SBM](#python-sbm)
+- [Installation](#installation)
+- [Getting Started](#getting-started)
+- [Documentation](#documentation)
+- [Testing](#testing)
 
 <br>
 python-sbm is a Python library for simulating explosion and collision events in orbit using the NASA Standard Breakup Model. The breakup model was implemented based on the following works: NASA’s new breakup model of evolve 4.0 (Johnson et al.), and Proper Implementation of the 1998 NASA Breakup Model (Krisko et al.).
@@ -45,7 +54,7 @@ debris = event.run()
 ```
 > An example configuration.yaml and Satellite implementation has been provided in `examples`
 
-## Resulting Data Format
+## Result Data Format
 
 | index | data                       | type                               |
 |-------|----------------------------|------------------------------------|
@@ -62,3 +71,12 @@ debris = event.run()
 
 ## Documentation
 - [Read the Docs](https://python-sbm.rtfd.io)
+
+## Testing
+```shell
+pytest --cov=nasa_sbm tests/
+```
+
+```shell
+coverage report -m
+```
