@@ -8,7 +8,6 @@ from abc import (
 
 
 class Satellite(ABC):
-
     @property
     @abstractmethod
     def position(self) -> np.ndarray:
@@ -31,5 +30,5 @@ class Satellite(ABC):
 
     @property
     @abstractmethod
-    def type(self) -> SatType :
+    def type(self) -> SatType:
         ...

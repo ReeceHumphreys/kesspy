@@ -11,6 +11,7 @@ def distribution_constant(
     else:
         return mid_function(log_L_c)
 
+
 def alpha(sat_type, log_L_c):
     if sat_type == SatType.rb:
         return distribution_constant(
@@ -126,6 +127,7 @@ def mean_soc(log_L_c):
 
 def sigma_soc(log_L_c):
     return 0.2 if log_L_c <= -3.5 else 0.2 + 0.1333 * (log_L_c + 3.5)
+
 
 def power_law(x0, x1, n, y):
     step = pow(x1, n + 1) - pow(x0, n + 1) * y + pow(x0, n + 1)

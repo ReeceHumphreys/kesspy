@@ -2,7 +2,7 @@ import numpy as np
 from .configuration import SatType
 
 
-class Collision():
+class Collision:
     @property
     def lc_power_law_exponent(self) -> float:
         """
@@ -44,7 +44,7 @@ class Collision():
         """
         return self._input_mass
 
-    def fragment_count(self, satellites: np.ndarray, min_characteristic_length : float):
+    def fragment_count(self, satellites: np.ndarray, min_characteristic_length: float):
         """
         Determines the number of debris fragments produced by the fragmentation event.
         Noteably, this quantity can change if mass conservation is being enforced.
@@ -79,23 +79,18 @@ class Collision():
             self._sat_type = SatType.rb
 
         # satellite_1 should be the bigger satellite
-        if (
-            satellite_2.characteristic_length
-            > satellite_1.characteristic_length
-        ):
+        if satellite_2.characteristic_length > satellite_1.characteristic_length:
             satellite_1, satellite_2 = satellite_2, satellite_1
 
         self._input_mass = satellite_1.mass + satellite_2.mass
         mass = 0
 
         # The Relative Collision Velocity
-        delta_velocity = np.linalg.norm(
-            satellite_1.velocity - satellite_2.velocity
-        )
+        delta_velocity = np.linalg.norm(satellite_1.velocity - satellite_2.velocity)
 
-        catastrophic_ratio = (
-            satellite_2.mass * delta_velocity * delta_velocity
-        ) / (2.0 * satellite_1.mass * 1000.0)
+        catastrophic_ratio = (satellite_2.mass * delta_velocity * delta_velocity) / (
+            2.0 * satellite_1.mass * 1000.0
+        )
 
         if catastrophic_ratio < 40.0:
             self._is_catastrophic = False
@@ -104,12 +99,10 @@ class Collision():
             self._is_catastrophic = True
             mass = satellite_1.mass + satellite_2.mass
 
-        return int(
-            0.1 * pow(mass, 0.75) * pow(min_characteristic_length, -1.71)
-        )
+        return int(0.1 * pow(mass, 0.75) * pow(min_characteristic_length, -1.71))
 
 
-class Explosion():
+class Explosion:
     @property
     def lc_power_law_exponent(self) -> float:
         """
@@ -149,7 +142,9 @@ class Explosion():
         """
         return self._input_mass
 
-    def fragment_count(self, satellites: np.ndarray, min_characteristic_length : float) -> np.ndarray:
+    def fragment_count(
+        self, satellites: np.ndarray, min_characteristic_length: float
+    ) -> np.ndarray:
         """
         Determines the number of debris fragments produced by the fragmentation event.
         Noteably, this quantity can change if mass conservation is being enforced.

@@ -13,18 +13,22 @@ class SatType(Enum):
     soc = "SOC"
     deb = "DEB"
 
+
 class SimulationConfiguration:
 
     # Takes a .yaml file with simulation configurations
     def __init__(self, filePath: str):
         try:
-            with open(filePath, 'r') as stream:
+            with open(filePath, "r") as stream:
                 data_loaded = yaml.safe_load(stream)
                 self._minimalCharacteristicLength = float(
-                    data_loaded['minimalCharacteristicLength'])
-                self._simulationType = SimulationType(data_loaded['simulationType'].upper())
-                self._sat_type = SatType(data_loaded['satType'].upper())
-                self._mass_conservation = bool(data_loaded['massConservation'])
+                    data_loaded["minimalCharacteristicLength"]
+                )
+                self._simulationType = SimulationType(
+                    data_loaded["simulationType"].upper()
+                )
+                self._sat_type = SatType(data_loaded["satType"].upper())
+                self._mass_conservation = bool(data_loaded["massConservation"])
                 stream.close()
         except Exception as e:
             print(f"Exception: {e}")

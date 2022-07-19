@@ -9,7 +9,7 @@ from .utils import (
     sigma_2,
     sigma_soc,
     alpha,
-    power_law
+    power_law,
 )
 import numpy as np
 
@@ -48,9 +48,7 @@ class BreakupModel:
 
     def run(self):
         # Compute the number of fragments generate in the fragmentation event
-        count = self._event.fragment_count(
-            self.sats, self._min_characteristic_length
-        )
+        count = self._event.fragment_count(self.sats, self._min_characteristic_length)
         # Location the explosion occured
         r = self.sats[0].position
 
