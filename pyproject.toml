@@ -13,7 +13,7 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 packages = [
-    { include = "nasa_sbm", from = "src" },
+    { include = "nasa_sbm" },
 ]
 
 [tool.poetry.urls]
@@ -21,13 +21,14 @@ packages = [
 
 [tool.poetry.dependencies]
 python = "^3.8.13"
-numpy = "^1.23.1"
 PyYAML = "^6.0"
+maturin = "^0.13.2"
+numba = "^0.56.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^7.1.2"
 Sphinx = "^5.1.1"
 
 [build-system]
-requires = ["poetry-core>=1.0.0"]
+requires = ["poetry-core>=1.0.0", "maturin>=0.13,<0.14"]
 build-backend = "poetry.core.masonry.api"

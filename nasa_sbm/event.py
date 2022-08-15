@@ -1,8 +1,10 @@
 import numpy as np
 from .configuration import SatType
 from typing import List
+from dataclasses import dataclass
 
 
+@dataclass
 class Collision:
     @property
     def lc_power_law_exponent(self) -> float:
@@ -104,6 +106,7 @@ class Collision:
         return int(0.1 * pow(mass, 0.75) * pow(min_characteristic_length, -1.71))
 
 
+@dataclass
 class Explosion:
     @property
     def lc_power_law_exponent(self) -> float:

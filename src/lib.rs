@@ -1,26 +1,36 @@
-#[macro_use]
-extern crate cpython;
-
+mod am_ratio;
+use pyo3::exceptions::PyValueError;
+use pyo3::prelude::*;
+use pyo3::{pyfunction, PyResult};
 use rand::distributions::{Distribution, Uniform};
 
-// re export am_ratio from am_ratio.rs
-mod am_ratio;
-pub use self::am_ratio::*;
-
-py_module_initializer!(libnsbm, initlibnsbm, PyInit_nsbm, |py, m| {
-    m.add(py, "__doc__", "This module is implemented in Rust")?;
-    m.add(
-        py,
-        "count_doubles",
-        py_fn!(py, am_ratio(sat_kind: i32, characteristic_len: f32)),
-    )?;
+/// A Python module implemented in Rust.
+#[pymodule]
+fn nsbm(_py: Python, m: &PyModule) -> PyResult<()> {
+    m.add_function(wrap_pyfunction!(am_ratio::am_ratio, m)?)?;
+    m.add_function(wrap_pyfunction!(mass, m)?)?;
+    m.add_function(wrap_pyfunction!(area, m)?)?;
+    m.add_function(wrap_pyfunction!(characteristic_length_dist, m)?)?;
     Ok(())
-});
+}
 
+#[derive(Debug)]
 pub enum SatKind {
-    RB,
-    SOC,
-    SC,
+    RB = 0,
+    SOC = 1,
+    SC = 2,
+}
+
+impl<'source> FromPyObject<'source> for SatKind {
+    fn extract(ob: &'source PyAny) -> PyResult<Self> {
+        let kind = ob.extract::<i32>()?;
+        match kind {
+            0 => Ok(SatKind::RB),
+            1 => Ok(SatKind::SOC),
+            2 => Ok(SatKind::SC),
+            _ => Err(PyErr::new::<PyValueError, _>("Invalid SatKind")),
+        }
+    }
 }
 
 impl From<i32> for SatKind {
@@ -34,6 +44,19 @@ impl From<i32> for SatKind {
     }
 }
 
+#[derive(Debug)]
+enum FragmentationEventKind {
+    Collision {
+        m_proj: f32,
+        m_targ: f32,
+        v_impact: f32,
+    },
+    Explosion {
+        m_satellite: f32,
+        s: f32,
+    },
+}
+
 /// Returns a the relative kinetic energy of the collision divided by the mass of the target. [J/g]
 ///
 /// # Arguments
@@ -45,20 +68,21 @@ fn rel_ke(m_proj: f32, m_targ: f32, v_impact: f32) -> f32 {
     let ke = 0.5 * m_proj * v_impact.powi(2);
     ke / m_targ
 }
-
-fn mass(area: f32, am_ratio: f32) -> f32 {
-    area / am_ratio
+#[pyfunction]
+fn mass(area: f32, am_ratio: f32) -> PyResult<f32> {
+    Ok(area / am_ratio)
 }
 
-fn area(characteristic_len: f32) -> f32 {
+#[pyfunction]
+fn area(characteristic_len: f32) -> PyResult<f32> {
     const BOUND: f32 = 0.00167;
     if characteristic_len < BOUND {
         const FACTOR: f32 = 0.540424;
-        FACTOR * characteristic_len.powi(2)
+        Ok(FACTOR * characteristic_len.powi(2))
     } else {
         const EXP: f32 = 2.0047077;
         const FACTOR: f32 = 0.556945;
-        FACTOR * characteristic_len.powf(EXP)
+        Ok(FACTOR * characteristic_len.powf(EXP))
     }
 }
 
@@ -113,33 +137,27 @@ fn num_fragments(kind: FragmentationEventKind, characteristic_len: f32) -> f32 {
     }
 }
 
-enum FragmentationEventKind {
-    Collision {
-        m_proj: f32,
-        m_targ: f32,
-        v_impact: f32,
-    },
-    Explosion {
-        m_satellite: f32,
-        s: f32,
-    },
+fn power_law(x0: f32, x1: f32, n: f32, y: f32) -> f32 {
+    let step = x1.powf(n + 1.) - x0.powf(n + 1.) * y + x0.powf(n + 1.);
+    step.powf((1. / (n + 1.)) as f32)
 }
 
-fn power_law(x0: f32, x1: f32, n: i32, y: f32) -> f32 {
-    let step = x1.powi(n + 1) - x0.powi(n + 1) * y + x0.powi(n + 1);
-    step.powf((1 / (n + 1)) as f32)
-}
-
+#[pyfunction]
 fn characteristic_length_dist(
     min_characteristic_len: f32,
     max_characteristic_len: f32,
-    exponent: i32,
-) -> f32 {
+    exponent: f32,
+) -> PyResult<f32> {
     // Sampling a value from uniform distribution
     let uniform = Uniform::new_inclusive(0.0, 1.0);
     let mut rng = rand::thread_rng();
     let y = uniform.sample(&mut rng);
 
     // Sampling a value from power law distribution
-    power_law(min_characteristic_len, max_characteristic_len, exponent, y)
+    Ok(power_law(
+        min_characteristic_len,
+        max_characteristic_len,
+        exponent,
+        y,
+    ))
 }

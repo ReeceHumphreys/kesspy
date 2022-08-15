@@ -1,6 +1,6 @@
 use crate::SatKind;
 
-use cpython::{PyResult, Python};
+use pyo3::{pyfunction, PyResult};
 use rand::distributions::Distribution;
 use rand_distr::Normal;
 
@@ -8,8 +8,8 @@ use rand_distr::Normal;
 ///
 /// # Arguments
 /// * `characteristic_len` - Then characteristic length. [m]
-pub fn am_ratio(_py: Python, sat_kind: i32, characteristic_len: f32) -> PyResult<f32> {
-    let sat_kind = SatKind::from(sat_kind);
+#[pyfunction]
+pub fn am_ratio(sat_kind: SatKind, characteristic_len: f32) -> PyResult<f32> {
     let lambda_lc = characteristic_len.log10();
     if lambda_lc > 0.11 {
         // Bigger than 11 cm

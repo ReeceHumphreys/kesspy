@@ -1,5 +1,6 @@
 import numpy as np
 from .configuration import SatType
+from dataclasses import dataclass
 
 from abc import (
     ABC,
@@ -7,6 +8,7 @@ from abc import (
 )
 
 
+@dataclass
 class Satellite(ABC):
     @property
     @abstractmethod

@@ -8,15 +8,25 @@ class SimulationType(Enum):
 
 
 class SatType(Enum):
-    rb = "RB"
-    sat = "SC"
-    soc = "SOC"
-    deb = "DEB"
+    rb = 0
+    soc = 1
+    sat = 2
+    deb = 3
+
+    def asInt(self):
+        return self.value
 
 
 class SimulationConfiguration:
 
+    SatTypeDict = {
+        "RB": SatType.rb,
+        "SOC": SatType.soc,
+        "SAT": SatType.sat,
+        "DEB": SatType.deb,
+    }
     # Takes a .yaml file with simulation configurations
+
     def __init__(self, filePath: str):
         try:
             with open(filePath, "r") as stream:
@@ -27,7 +37,8 @@ class SimulationConfiguration:
                 self._simulationType = SimulationType(
                     data_loaded["simulationType"].upper()
                 )
-                self._sat_type = SatType(data_loaded["satType"].upper())
+                sat_type = self.SatTypeDict[data_loaded["satType"].upper()]
+                self._sat_type = sat_type
                 self._mass_conservation = bool(data_loaded["massConservation"])
                 stream.close()
         except Exception as e:
