@@ -1,6 +1,33 @@
-[build-system]
-requires = [
-    "setuptools>=42",
-    "wheel"
+[tool.poetry]
+name = "nasa-sbm"
+version = "0.1.0"
+description = "An implementation of the NASA Standard Breakup Model in Python"
+authors = ["Reece Humphreys <reecewh@icloud.com>"]
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/ReeceHumphreys/python-sbm"
+documentation = "https://python-sbm.readthedocs.io/en/latest/"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
 ]
-build-backend = "setuptools.build_meta"
+packages = [
+    { include = "nasa_sbm", from = "src" },
+]
+
+[tool.poetry.urls]
+"Bug Tracker" = "https://github.com/ReeceHumphreys/python-sbm/issues"
+
+[tool.poetry.dependencies]
+python = "^3.8.13"
+numpy = "^1.23.1"
+PyYAML = "^6.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^7.1.2"
+Sphinx = "^5.1.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

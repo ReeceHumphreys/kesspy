@@ -1,8 +1,8 @@
-import pytest
-import nasa_sbm
+# import pytest
+# import nasa_sbm
 
 
-class TestConfiguration:
+# class TestConfiguration:
 
-    def test_one(self):
-        pass
+#     def test_one(self):
+#         pass

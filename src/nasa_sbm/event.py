@@ -1,5 +1,6 @@
 import numpy as np
 from .configuration import SatType
+from typing import List
 
 
 class Collision:
@@ -12,7 +13,7 @@ class Collision:
         return -2.71
 
     @property
-    def delta_velocity_offset(self) -> list[float]:
+    def delta_velocity_offset(self) -> List[float]:
         """
         Gets the offset factors used in determining the change in velocity for each
         fragment.
@@ -86,7 +87,8 @@ class Collision:
         mass = 0
 
         # The Relative Collision Velocity
-        delta_velocity = np.linalg.norm(satellite_1.velocity - satellite_2.velocity)
+        delta_velocity = np.linalg.norm(
+            satellite_1.velocity - satellite_2.velocity)
 
         catastrophic_ratio = (satellite_2.mass * delta_velocity * delta_velocity) / (
             2.0 * satellite_1.mass * 1000.0
@@ -112,7 +114,7 @@ class Explosion:
         return -2.6
 
     @property
-    def delta_velocity_offset(self) -> list[float]:
+    def delta_velocity_offset(self) -> List[float]:
         """
         Gets the offset factors used in determining the change in velocity for each
         fragment.

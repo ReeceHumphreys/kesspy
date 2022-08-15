@@ -2,8 +2,10 @@ import numpy as np
 from nasa_sbm.configuration import SatType, SimulationConfiguration
 from nasa_sbm.model import BreakupModel
 from nasa_sbm.satellite import Satellite
+from dataclasses import dataclass
 
 
+@dataclass
 class MySat(Satellite):
 
     @property
