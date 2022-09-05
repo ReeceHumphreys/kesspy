@@ -1,6 +1,7 @@
 use crate::SatKind;
 
-use pyo3::{pyfunction, PyResult};
+// use pyo3::{pyfunction, PyResult};
+use ndarray::prelude::*;
 use rand::distributions::Distribution;
 use rand_distr::Normal;
 
@@ -8,16 +9,23 @@ use rand_distr::Normal;
 ///
 /// # Arguments
 /// * `characteristic_len` - Then characteristic length. [m]
-#[pyfunction]
-pub fn am_ratio(sat_kind: SatKind, characteristic_len: f32) -> PyResult<f32> {
+pub fn am_ratio(sat_kind: &SatKind, characteristic_len: &Array1<f32>) -> Array1<f32> {
+    let mut result: Array1<f32> = characteristic_len.clone();
+    result.par_map_inplace(|x| {
+        *x = get_am_ratio(sat_kind, *x);
+    });
+    result
+}
+
+fn get_am_ratio(sat_kind: &SatKind, characteristic_len: f32) -> f32 {
     let lambda_lc = characteristic_len.log10();
     if lambda_lc > 0.11 {
         // Bigger than 11 cm
         // Means and Std Devs. for normal distributions
-        let mean_1 = mean_1(&sat_kind, lambda_lc);
-        let mean_2 = mean_2(&sat_kind, lambda_lc);
-        let std_dev_1 = sigma_1(&sat_kind, lambda_lc);
-        let std_dev_2 = sigma_2(&sat_kind, lambda_lc);
+        let mean_1 = mean_1(sat_kind, lambda_lc);
+        let mean_2 = mean_2(sat_kind, lambda_lc);
+        let std_dev_1 = sigma_1(sat_kind, lambda_lc);
+        let std_dev_2 = sigma_2(sat_kind, lambda_lc);
 
         // Sample values from normal distributions
         let mut rng = rand::thread_rng();
@@ -29,7 +37,7 @@ pub fn am_ratio(sat_kind: SatKind, characteristic_len: f32) -> PyResult<f32> {
         let n2 = normal_2.sample(&mut rng);
 
         // Calculate AM Ratio
-        Ok(10_f32.powf(alpha(&sat_kind, lambda_lc) * n1 + (1. - alpha(&sat_kind, lambda_lc)) * n2))
+        10_f32.powf(alpha(sat_kind, lambda_lc) * n1 + (1. - alpha(sat_kind, lambda_lc)) * n2)
     } else if lambda_lc < 0.08 {
         // Smaller than 8 cm
 
@@ -40,14 +48,14 @@ pub fn am_ratio(sat_kind: SatKind, characteristic_len: f32) -> PyResult<f32> {
         let mut rng = rand::thread_rng();
         let y = normal.sample(&mut rng);
 
-        Ok(10_f32.powf(y))
+        10_f32.powf(y)
     } else {
         // Case between 8 cm and 11 cm
         // Means and Std Devs. for normal distributions
-        let mean_1 = mean_1(&sat_kind, lambda_lc);
-        let mean_2 = mean_2(&sat_kind, lambda_lc);
-        let std_dev_1 = sigma_1(&sat_kind, lambda_lc);
-        let std_dev_2 = sigma_2(&sat_kind, lambda_lc);
+        let mean_1 = mean_1(sat_kind, lambda_lc);
+        let mean_2 = mean_2(sat_kind, lambda_lc);
+        let std_dev_1 = sigma_1(sat_kind, lambda_lc);
+        let std_dev_2 = sigma_2(sat_kind, lambda_lc);
 
         // Sample values from normal distributions
         let mut rng = rand::thread_rng();
@@ -62,10 +70,10 @@ pub fn am_ratio(sat_kind: SatKind, characteristic_len: f32) -> PyResult<f32> {
         let n2 = normal_2.sample(&mut rng);
 
         let y0 = 10_f32.powf(n);
-        let y1 = 10_f32
-            .powf(alpha(&sat_kind, lambda_lc) * n1 + (1.0 - alpha(&sat_kind, lambda_lc)) * n2);
+        let y1 =
+            10_f32.powf(alpha(sat_kind, lambda_lc) * n1 + (1.0 - alpha(sat_kind, lambda_lc)) * n2);
 
-        Ok(y0 + (characteristic_len - 0.08) * (y1 - y0) / (0.03))
+        y0 + (characteristic_len - 0.08) * (y1 - y0) / (0.03)
     }
 }
 

@@ -6,9 +6,12 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 [lib]
 name = "nsbm"
-crate-type = ["cdylib"]
 
 [dependencies]
 rand = "0.8.5"
 rand_distr = "0.4.3"
-pyo3 = { version = "0.16.5", features = ["extension-module"] }
+ndarray = { version = "0.14.0", features = ["blas", "rayon"] }
+ndarray-linalg = "0.13"
+ndarray-rand = "0.13.0"
+blas-src = { version = "0.8", features = ["openblas"] }
+openblas-src = { version = "0.10", features = ["cblas", "system"] }
