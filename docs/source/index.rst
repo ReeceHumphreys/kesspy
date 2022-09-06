@@ -19,13 +19,13 @@
    :hidden:
    :caption: Project Links:
 
-   GitHub <https://github.com/ReeceHumphreys/python-sbm>
+   GitHub <https://github.com/ReeceHumphreys/kesspy>
    PyPI <https://pypi.org/project/nasa_sbm/>
 
 
-Welcome to python-sbm
+Welcome to kesspy
 =====================================================
-*python-sbm* is a Python library for simulating explosion and collision events
+*kesspy* is a Python library for simulating explosion and collision events
 in orbit using the NASA Standard Breakup Model (SBM). The breakup model was implemented based on the following works:
 NASA's new breakup model of evolve 4.0 (Johnson et al.) [#johnson]_, and
 Proper Implementation of the 1998 NASA Breakup Model (Krisko et al.) [#krisko]_.
@@ -37,19 +37,19 @@ With this package you can:
 * Determine the relative velocity of each debris fragment.
 
 
-Additionally, *python-sbm* is used to power ODAP (Orbital Debris Analysis with Python)
+Additionally, *kesspy* is used to power ODAP (Orbital Debris Analysis with Python)
 which is a larger package that includes propagations, data analysis, and orbit visualization. This package
 serves as a stand-alone version of the NASA Breakup Model in the scenario that you do not want the additional
 tools provided by ODAP.
 
-.. admonition:: Note - python-sbm is in development!
+.. admonition:: Note - kesspy is in development!
 
-   *python-sbm* is currently under development. As a result, the API may change,
+   *kesspy* is currently under development. As a result, the API may change,
    and some functionality may not work as expected. As such, until version 1.0, this package should be
    considered pre-release. Please feel free to create an issue on the GitHub page with any issues or questions!
 
 .. note::
-   :doc:`python-sbm is licensed under the MIT license <license>`.
+   :doc:`kesspy is licensed under the MIT license <license>`.
 
 
 .. [#johnson] `NASA's new breakup model of evolve 4.0 <https://www.sciencedirect.com/science/article/abs/pii/S0273117701004239>`_

@@ -1,41 +1,44 @@
-# python-sbm
+# kesspy
 
 <div style="display:flex; flex-direction: row; justify-content: center; align-items: center">
-  <a href='https://python-sbm.readthedocs.io/en/latest/?badge=latest'>
-    <img src='https://readthedocs.org/projects/python-sbm/badge/?version=latest' alt='Documentation Status' />
+  <a href='https://kesspy.readthedocs.io/en/latest/?badge=latest'>
+    <img src='https://readthedocs.org/projects/kesspy/badge/?version=latest' alt='Documentation Status' />
   </a>
-  <a href="https://github.com/ReeceHumphreys/python-sbm/blob/main/LICENSE">
-    <img alt="License: MIT" src="https://img.shields.io/github/license/ReeceHumphreys/python-sbm" target="_blank" />
+  <a href="https://github.com/ReeceHumphreys/kesspy/blob/main/LICENSE">
+    <img alt="License: MIT" src="https://img.shields.io/github/license/ReeceHumphreys/kesspy" target="_blank" />
   </a>
-  <img src="https://img.shields.io/lgtm/grade/python/github/ReeceHumphreys/python-sbm" target="_blank"/>
+  <img src="https://img.shields.io/lgtm/grade/python/github/ReeceHumphreys/kesspy" target="_blank"/>
   <a href="https://pypi.org/project/nasa_sbm/">
     <img src="https://img.shields.io/pypi/v/nasa_sbm"target="_blank"/>
   </a>
-  <a href='https://coveralls.io/github/ReeceHumphreys/python-sbm?branch=main'>
-    <img src='https://coveralls.io/repos/github/ReeceHumphreys/python-sbm/badge.svg?branch=main' alt='Coverage Status' />
+  <a href='https://coveralls.io/github/ReeceHumphreys/kesspy?branch=main'>
+    <img src='https://coveralls.io/repos/github/ReeceHumphreys/kesspy/badge.svg?branch=main' alt='Coverage Status' />
   </a>
 </div>
 
-- [Python-SBM](#python-sbm)
+- [kesspy](#kesspy)
 - [Installation](#installation)
 - [Getting Started](#getting-started)
 - [Documentation](#documentation)
 - [Testing](#testing)
 
 <br>
-python-sbm is a Python library for simulating explosion and collision events in orbit using the NASA Standard Breakup Model. The breakup model was implemented based on the following works: NASA’s new breakup model of evolve 4.0 (Johnson et al.), and Proper Implementation of the 1998 NASA Breakup Model (Krisko et al.).
+kesspy is a Python library for simulating explosion and collision events in orbit using the NASA Standard Breakup Model. The breakup model was implemented based on the following works: NASA’s new breakup model of evolve 4.0 (Johnson et al.), and Proper Implementation of the 1998 NASA Breakup Model (Krisko et al.).
 
 ## Installation
-python-sbm runs on Python 3.6 or higher (Python 3.8 is recommended):
+
+kesspy runs on Python 3.6 or higher (Python 3.8 is recommended):
 Currently the package is available using pip:
+
 ```
 pip install nasa_sbm
 ```
->*A conda distribution will be made available when the project is stable*
+
+> _A conda distribution will be made available when the project is stable_
 
 ## Getting Started
 
-To use python-sbm, you must first create a .yaml file to configure the simulation.
+To use kesspy, you must first create a .yaml file to configure the simulation.
 This file has three required fields, the minimum characteristic length, the [simulation type](https://nasa-breakup-model-python.readthedocs.io/en/latest/_autosummary/nasa_sbm.configuration.SimulationType.html),
 and the [satellite type](https://nasa-breakup-model-python.readthedocs.io/en/latest/_autosummary/nasa_sbm.configuration.SatType.html)
 involved in the fragmentation event.
@@ -52,27 +55,29 @@ config = SimulationConfiguration('data/simulation_config.yaml')
 event  = BreakupModel(config, np.array([sat]))
 debris = event.run()
 ```
+
 > An example configuration.yaml and Satellite implementation has been provided in `examples`
 
 ## Result Data Format
 
-| index | data                       | type                               |
-|-------|----------------------------|------------------------------------|
-| 0     | SatType (for internal use) | enum                               |
-| 1     | position                   | np.array (, 3), containing floats  |
-| 2     | characteristic length      | float                              |
-| 3     | area to mass ratio         | float                              |
-| 4     | area                       | float                              |
-| 5     | mass                       | float                              |
-| 6     | velocity                   | np.array (, 3), containing floats  |
+| index | data                       | type                              |
+| ----- | -------------------------- | --------------------------------- |
+| 0     | SatType (for internal use) | enum                              |
+| 1     | position                   | np.array (, 3), containing floats |
+| 2     | characteristic length      | float                             |
+| 3     | area to mass ratio         | float                             |
+| 4     | area                       | float                             |
+| 5     | mass                       | float                             |
+| 6     | velocity                   | np.array (, 3), containing floats |
 
->*The returned debris is an (n, 7, 3) numpy array. However, only the position and velocity use the third axis as those quanities are vectors.*
->*All other fields have 3 copies of their respective data. This was done as a performance optimization for numpy*
+> _The returned debris is an (n, 7, 3) numpy array. However, only the position and velocity use the third axis as those quanities are vectors._ >_All other fields have 3 copies of their respective data. This was done as a performance optimization for numpy_
 
 ## Documentation
-- [Read the Docs](https://python-sbm.rtfd.io)
+
+- [Read the Docs](https://kesspy.rtfd.io)
 
 ## Testing
+
 ```shell
 pytest --cov=nasa_sbm tests/
 ```

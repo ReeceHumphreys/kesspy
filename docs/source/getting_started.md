@@ -2,7 +2,8 @@
 
 ## Installation
 
-_python-sbm_ can be installed by running:
+_kesspy_ can be installed by running:
+
 ```
 pip install nasa_sbm
 ```
