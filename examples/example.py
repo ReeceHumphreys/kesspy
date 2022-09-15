@@ -5,7 +5,7 @@ from kessler_ext import SatellitePyWrapper, ExplosionEventPyWrapper, run_explosi
 pos = np.array([0.0, 0.0, 0.0], np.float32)
 vel = np.array([0.0, 0.0, 0, 0], np.float32)
 
-sat = SatellitePyWrapper(pos, vel, 839.0, 0.01)
+sat = SatellitePyWrapper(pos, vel, 839.0, 0.000000000000001)
 event = ExplosionEventPyWrapper(sat)
 debris = run_explosion(event)
 
