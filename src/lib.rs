@@ -3,7 +3,7 @@ use numpy::{PyArray1, PyArray3, ToPyArray};
 use pyo3::prelude::*;
 
 // Wrappers for the structs provided by kessler
-#[pyclass]
+#[pyclass(name = "CollisionEvent")]
 #[derive(Debug)]
 pub struct CollisionEventPyWrapper(CollisionEvent);
 
@@ -20,7 +20,7 @@ impl CollisionEventPyWrapper {
     }
 }
 
-#[pyclass]
+#[pyclass(name = "ExplosionEvent")]
 #[derive(Debug)]
 pub struct ExplosionEventPyWrapper(ExplosionEvent);
 
@@ -33,7 +33,7 @@ impl ExplosionEventPyWrapper {
     }
 }
 
-#[pyclass]
+#[pyclass(name = "Satellite")]
 #[derive(Debug)]
 pub struct SatellitePyWrapper(Satellite);
 
@@ -53,7 +53,7 @@ impl SatellitePyWrapper {
             position,
             velocity,
             mass,
-            sat_kind: SatKind::RB, // TODO
+            sat_kind: SatKind::Rb, // TODO
             characteristic_length,
         })
     }
@@ -61,7 +61,7 @@ impl SatellitePyWrapper {
 
 // The name of the module must be the same as the rust package name
 #[pymodule]
-fn kessler_ext(_py: Python<'_>, m: &PyModule) -> PyResult<()> {
+fn kesspy(_py: Python<'_>, m: &PyModule) -> PyResult<()> {
     #[pyfn(m)]
     fn run_collision<'py>(py: Python<'py>, event: &CollisionEventPyWrapper) -> &'py PyArray3<f32> {
         let event = &event.0;

@@ -181,7 +181,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "kessler_ext"
+name = "kesspy"
 version = "0.1.0"
 dependencies = [
  "kessler",

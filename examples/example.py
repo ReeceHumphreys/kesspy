@@ -1,12 +1,11 @@
 import numpy as np
-from kessler_ext import SatellitePyWrapper, ExplosionEventPyWrapper, run_explosion
-
+from kesspy import Satellite, ExplosionEvent, run_explosion
 
 pos = np.array([0.0, 0.0, 0.0], np.float32)
 vel = np.array([0.0, 0.0, 0, 0], np.float32)
 
-sat = SatellitePyWrapper(pos, vel, 839.0, 0.000000000000001)
-event = ExplosionEventPyWrapper(sat)
+sat = Satellite(pos, vel, 839.0, 0.000000000000001)
+event = ExplosionEvent(sat)
 debris = run_explosion(event)
 
 mean_area = np.mean(debris[:, 4, 0])
