@@ -12,23 +12,17 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
-packages = [
-    { include = "kesspy" },
-]
 
 [tool.poetry.urls]
 "Bug Tracker" = "https://github.com/ReeceHumphreys/kesspy/issues"
 
 [tool.poetry.dependencies]
 python = "^3.8.13"
-PyYAML = "^6.0"
 maturin = "^0.13.2"
-numba = "^0.56.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^7.1.2"
-Sphinx = "^5.1.1"
 
 [build-system]
-requires = ["poetry-core>=1.0.0", "maturin>=0.13,<0.14"]
+requires = ["maturin>=0.13,<0.14"]
 build-backend = "maturin"
