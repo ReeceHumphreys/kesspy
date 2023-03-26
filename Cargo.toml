@@ -1,0 +1,15 @@
+[package]
+name = "kesspy"
+version = "0.1.1"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[lib]
+name = "kesspy"
+crate-type = ["cdylib"]
+
+[dependencies]
+# Uses the github repo when built locally, and Crates.io when published.
+kessler = "0.1.1"
+numpy = "0.18.0"
+pyo3 = { version = "0.18.1", features = ["extension-module"] }

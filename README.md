@@ -1,82 +1,99 @@
-# python-sbm
+# KessPy
 
-<div style="display:flex; flex-direction: row; justify-content: center; align-items: center">
-  <a href='https://python-sbm.readthedocs.io/en/latest/?badge=latest'>
-    <img src='https://readthedocs.org/projects/python-sbm/badge/?version=latest' alt='Documentation Status' />
-  </a>
-  <a href="https://github.com/ReeceHumphreys/python-sbm/blob/main/LICENSE">
-    <img alt="License: MIT" src="https://img.shields.io/github/license/ReeceHumphreys/python-sbm" target="_blank" />
-  </a>
-  <img src="https://img.shields.io/lgtm/grade/python/github/ReeceHumphreys/python-sbm" target="_blank"/>
-  <a href="https://pypi.org/project/nasa_sbm/">
-    <img src="https://img.shields.io/pypi/v/nasa_sbm"target="_blank"/>
-  </a>
-  <a href='https://coveralls.io/github/ReeceHumphreys/python-sbm?branch=main'>
-    <img src='https://coveralls.io/repos/github/ReeceHumphreys/python-sbm/badge.svg?branch=main' alt='Coverage Status' />
-  </a>
-</div>
+- [KessPy](#kesspy)
+  - [Installation](#installation)
+  - [Requirements](#requirements)
+  - [Getting Started](#getting-started)
+  - [Result Data Format](#result-data-format)
+  - [Contributing](#contributing)
+  - [License](#license)
+  - [TODO](#todo)
 
-- [Python-SBM](#python-sbm)
-- [Installation](#installation)
-- [Getting Started](#getting-started)
-- [Documentation](#documentation)
-- [Testing](#testing)
+KessPy is a Python library that uses the NASA Standard Breakup Model to simulate explosion and collision events in orbit, which is important for managing space debris and preventing collisions with other orbiting objects. It is a Python wrapper around Kessler.rs, a Rust implementation of the NASA Standard Breakup Model, which provides significant performance gains over purely Python-based implementations. More information about Kessler.rs can be found on its GitHub page at <https://github.com/reecehumphreys/kessler>.
 
-<br>
-python-sbm is a Python library for simulating explosion and collision events in orbit using the NASA Standard Breakup Model. The breakup model was implemented based on the following works: NASA’s new breakup model of evolve 4.0 (Johnson et al.), and Proper Implementation of the 1998 NASA Breakup Model (Krisko et al.).
+**IMPORTANT**: Until this package reaches version 1.0, the API is subject to change and the accuracy of results cannot be guaranteed.
 
 ## Installation
-python-sbm runs on Python 3.6 or higher (Python 3.8 is recommended):
+
+KessPy runs on Python 3.6 or higher (Python 3.8 is recommended):
 Currently the package is available using pip:
+
+```shell
+pip install kesspy
 ```
-pip install nasa_sbm
-```
->*A conda distribution will be made available when the project is stable*
+
+> _A conda distribution will be made available when the project is stable_
+
+## Requirements
+
+KessPy requires the following packages:
+
+- numpy
 
 ## Getting Started
 
-To use python-sbm, you must first create a .yaml file to configure the simulation.
-This file has three required fields, the minimum characteristic length, the [simulation type](https://nasa-breakup-model-python.readthedocs.io/en/latest/_autosummary/nasa_sbm.configuration.SimulationType.html),
-and the [satellite type](https://nasa-breakup-model-python.readthedocs.io/en/latest/_autosummary/nasa_sbm.configuration.SatType.html)
-involved in the fragmentation event.
-
-Secondly, you must provide an implementation of [Satellite](https://nasa-breakup-model-python.readthedocs.io/en/latest/_autosummary/nasa_sbm.satellite.Satellite.html).
-
-Once, you have those two criterion met you can perform the simulation as follows:
+To get started with KessPy, you can use the following example code to simulate an explosion event and generate debris:
 
 ```python
-from nasa_sbm.configuration import SimulationConfiguration
-from nasa_sbm.model import BreakupModel
+import numpy as np
+from kesspy import Satellite, ExplosionEvent, run_explosion
 
-config = SimulationConfiguration('data/simulation_config.yaml')
-event  = BreakupModel(config, np.array([sat]))
-debris = event.run()
+# Define the initial position, velocity, mass, characteristic length, and kind of a satellite.
+pos = np.array([6.702e6, 0.0, 0.0], np.float32) # position vector [m] relative to Earth's center
+vel = np.array([0.0, 7.666e3, 0.0], np.float32) # velocity vector [m/s]'
+mass = 4.98e3; # [kg]
+characteristic_length = 0.1; # [m]
+
+# Create a new satellite with the given parameters
+sat = Satellite(pos, vel, mass, characteristic_length)
+
+# Create a new explosion event with the satellite
+event = ExplosionEvent(sat)
+
+# Run the simulation with the explosion event
+debris = run_explosion(event)
+
+# Print some statistics about the debris
+mean_area = np.mean(debris[:, 4, 0])
+mean_mass = np.mean(debris[:, 5, 0])
+
+print(f"{debris.shape[0]} Pieces of debris generated.")
+print(f"Mean mass: {mean_mass}")
+print(f"Mean area: {mean_area}")
 ```
-> An example configuration.yaml and Satellite implementation has been provided in `examples`
+
+In this example, we define the initial position, velocity, mass, characteristic length, and type of a satellite. We then create a new Satellite object with these parameters, and use it to create an ExplosionEvent. Finally, we run the simulation with the run_explosion function, which generates debris data that we can analyze.
 
 ## Result Data Format
 
-| index | data                       | type                               |
-|-------|----------------------------|------------------------------------|
-| 0     | SatType (for internal use) | enum                               |
-| 1     | position                   | np.array (, 3), containing floats  |
-| 2     | characteristic length      | float                              |
-| 3     | area to mass ratio         | float                              |
-| 4     | area                       | float                              |
-| 5     | mass                       | float                              |
-| 6     | velocity                   | np.array (, 3), containing floats  |
+| index | data                       | type                              |
+| ----- | -------------------------- | --------------------------------- |
+| 0     | SatType (for internal use) | enum                              |
+| 1     | position                   | np.array (, 3), containing floats |
+| 2     | characteristic length      | float                             |
+| 3     | area to mass ratio         | float                             |
+| 4     | area                       | float                             |
+| 5     | mass                       | float                             |
+| 6     | velocity                   | np.array (, 3), containing floats |
 
->*The returned debris is an (n, 7, 3) numpy array. However, only the position and velocity use the third axis as those quanities are vectors.*
->*All other fields have 3 copies of their respective data. This was done as a performance optimization for numpy*
+> _The returned debris is an (n, 7, 3) numpy array. However, only the position and velocity use the third axis as those quanities are vectors._ >_All other fields have 3 copies of their respective data. This was done as a performance optimization for numpy_
 
-## Documentation
-- [Read the Docs](https://python-sbm.rtfd.io)
+## Contributing
 
-## Testing
-```shell
-pytest --cov=nasa_sbm tests/
-```
+If you find a bug or have a feature request, please open an issue on the KessPy
+GitHub repository:
 
-```shell
-coverage report -m
-```
+<https://github.com/reeceHumphreys/kesspy/issues>
+
+If you'd like to contribute to the project, feel free to fork the repository and
+submit a pull request.
+
+## License
+
+Kessler is distributed under the terms of the MIT license. See the LICENSE file
+for details.
+
+## TODO
+
+- [ ] Update the documentation to reflect the new API
+- [ ] Add tests for the new API
