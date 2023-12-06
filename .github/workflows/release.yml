@@ -3,17 +3,14 @@
 #
 #    maturin generate-ci github
 #
-name: CI
+name: release
 
 on:
   push:
-    branches:
-      - main
-      - master
+    # Run on release and preview tags
     tags:
-      - "*"
-  pull_request:
-  workflow_dispatch:
+      - "v[0-9]+.[0-9]+.[0-9]+"
+      - "v[0-9]+.[0-9]+.[0-9]+-preview[0-9]+"
 
 permissions:
   contents: read
