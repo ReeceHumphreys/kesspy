@@ -13,3 +13,6 @@ crate-type = ["cdylib"]
 kessler = "0.1.4"
 numpy = "0.18.0"
 pyo3 = { version = "0.18.1", features = ["extension-module"] }
+
+[target.'cfg(all(target_os = "linux", any(target_env = "musl", target_arch = "arm", target_arch = "aarch64")))'.dependencies]
+openssl = { version = "0.10", features = ["vendored"] }
