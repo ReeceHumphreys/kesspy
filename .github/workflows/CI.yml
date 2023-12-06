@@ -31,7 +31,7 @@ jobs:
           python-version: "3.10"
       # Install OpenSSL and pkg-config
       - name: Install OpenSSL
-        run: sudo apt-get update && sudo apt-get install -y libssl-dev libudev-dev pkg-config
+        run: apt-get update && apt-get install -y libssl-dev libudev-dev pkg-config
       # Set environment variables for OpenSSL
       - name: Set OpenSSL environment variables
         run: |
