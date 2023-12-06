@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "kesspy"
-version = "0.1.3"
+version = "0.2.0"
 description = "An implementation of the NASA Standard Breakup Model in Python"
 authors = ["Reece Humphreys <reecewh@icloud.com>"]
 license = "MIT"
